@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,14 +29,24 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
         LayoutInflater inflater= LayoutInflater.from(mCtx);
         View v= inflater.inflate(R.layout.cuadroinfo,null);
 
+
         return new PlanetViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(PlanetViewHolder holder, int position) {
+    public void onBindViewHolder(PlanetViewHolder holder, final int position) {
         holder.titleTxtView.setText(planetaList.get(position).getNombrePlaneta());
         holder.sndTxtView.setText(planetaList.get(position).getInformacion());
+        planetaList.get(position).setPosition(position);
+        holder.b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("clic en: "+ position);
+            }
+        });
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -45,6 +56,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
     protected class PlanetViewHolder extends RecyclerView.ViewHolder{
         TextView titleTxtView, sndTxtView;
         ImageView img;
+        Button b;
 
         public PlanetViewHolder(View view){
             super(view);
@@ -52,6 +64,10 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
             titleTxtView = view.findViewById(R.id.texto);
             sndTxtView = view.findViewById(R.id.texto2);
             img=view.findViewById(R.id.imagen);
+            b= view.findViewById(R.id.botonfav);
+
         }
+
+
     }
 }

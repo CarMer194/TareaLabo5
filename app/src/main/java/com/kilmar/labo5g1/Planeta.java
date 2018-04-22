@@ -8,6 +8,8 @@ public class Planeta {
     private int idPlaneta;
     private String nombrePlaneta;
     private String informacion;
+    private boolean favorito=false;
+    private int position;
 
     public Planeta(int idPlaneta, String nombrePlaneta, String informacion) {
         this.idPlaneta = idPlaneta;
@@ -40,5 +42,19 @@ public class Planeta {
 
     public void setInformacion(String informacion) {
         this.informacion = informacion;
+    }
+
+
+    public void setFavorito() {
+        if (favorito){
+            favorito=false;
+        }
+        else {
+            favorito=true;
+        }
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }
