@@ -37,11 +37,11 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
     public void onBindViewHolder(PlanetViewHolder holder, final int position) {
         holder.titleTxtView.setText(planetaList.get(position).getNombrePlaneta());
         holder.sndTxtView.setText(planetaList.get(position).getInformacion());
-        planetaList.get(position).setPosition(position);
         holder.b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("clic en: "+ position);
+                planetaList.get(position).setFavorito();
             }
         });
     }
@@ -51,6 +51,10 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
     @Override
     public int getItemCount() {
         return planetaList.size();
+    }
+
+    public List<Planeta> getPlanetaList() {
+        return planetaList;
     }
 
     protected class PlanetViewHolder extends RecyclerView.ViewHolder{

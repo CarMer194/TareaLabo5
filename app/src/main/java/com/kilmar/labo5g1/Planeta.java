@@ -54,6 +54,10 @@ public class Planeta {
         }
     }
 
+    public boolean isFavorito() {
+        return favorito;
+    }
+
     public void setPosition(int position) {
         this.position = position;
     }
