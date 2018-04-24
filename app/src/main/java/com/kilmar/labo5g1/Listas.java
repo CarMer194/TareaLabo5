@@ -15,6 +15,7 @@ public class Listas {
     public Listas() {
         planetaList = fillList();
         listAUX = fillList();
+
     }
 
     public ArrayList<Planeta> fillList(){
@@ -46,4 +47,28 @@ public class Listas {
         this.listAUX = listAUX;
         System.out.println("info de aux: "+this.listAUX.get(0).getIdPlaneta());
     }
+
+    public void capturarFavsAux(){
+        for (int i=0; i<planetaList.size();i++){
+            if (planetaList.get(i).isFavorito()){
+                listAUX.get(i).setFavorito(true);
+            }
+            else {
+                listAUX.get(i).setFavorito(false);
+            }
+        }
+    }
+
+    public void reconstruirLista(){
+        planetaList = fillList();
+        for (int i=0;i<listAUX.size();i++){
+            if (listAUX.get(i).isFavorito()){
+                planetaList.get(i).setFavorito(true);
+            }
+            else{
+                planetaList.get(i).setFavorito(false);
+            }
+        }
+    }
+
 }

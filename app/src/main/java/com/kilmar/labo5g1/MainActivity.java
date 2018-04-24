@@ -38,17 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void cambiarVista1(View view){
         List<Planeta> planetaList;
-        try {
-            if (lista.getListAUX() == null){
-                System.out.println("llega nulo");
-            }
-            System.out.println("lista "+lista.getListAUX().get(0).getIdPlaneta());
-        }
-        catch (IndexOutOfBoundsException e){
-                e.getCause();
-        }
-
-        planetaList = lista.getListAUX();
+        //planetaList = lista.getListAUX();
+        //Aqui hay que llenar de nuevo la lista y agarrar los favoritos
+        lista.reconstruirLista();
+        planetaList = lista.getPlanetaList();
         System.out.println("vista 1");
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -62,34 +55,43 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void cambiarVista2(View view){
-        List<Planeta> planetaList;
-        lista.setListAUX(adapter.getPlanetaList());
-        System.out.println("jusdo despues de setear: "+lista.getListAUX().get(0).getInformacion());
-        planetaList = fillList2();
+        List<Planeta> listatemp;
+        //System.out.println("despues de hacer la vista 2:"+ lista.getListAUX().get(0).getIdPlaneta());
+        //System.out.println("paso");
+        //lista.setListAUX(adapter.getPlanetaList());
+        //System.out.println("lo que agarro antes de: "+adapter.getPlanetaList().get(0).getInformacion());
+        //System.out.println("jusdo despues de setear: "+lista.getListAUX().get(0).getInformacion());
+
+        //Aqui tengo que agarrar los favoritos de la otra lista
+        lista.capturarFavsAux();
+        listatemp = fillList2();
+        System.out.println("despues de hacer la vista 2:"+ lista.getListAUX().get(0).getIdPlaneta());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
-        adapter = new PlanetAdapter(this,planetaList);
+        adapter = new PlanetAdapter(this,listatemp);
 
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
 
+
+
     }
 
     public ArrayList<Planeta> fillList2(){
-        ArrayList<Planeta> l = (ArrayList<Planeta>) adapter.getPlanetaList();
-        System.out.println("la lista temporal recoje: "+l.get(0).getIdPlaneta());
+        ArrayList<Planeta> listatemp = (ArrayList<Planeta>) adapter.getPlanetaList();
+        //System.out.println("el favorito es: "+ lista.getPlanetaList().get(0).getFavorito());
         int i=0;
-        System.out.println("size es: "+l.size());
+        System.out.println("size es: "+listatemp.size());
 
-        for (i=0;i<l.size();i++){
+        for (i=0;i<listatemp.size();i++){
             System.out.println("paso "+i);
-            if (!l.get(i).isFavorito()){
-                l.remove(i);
+            if (!listatemp.get(i).isFavorito()){
+                listatemp.remove(i);
                 i--;
             }
         }
 
-        return l;
+        return listatemp;
 
     }
 
