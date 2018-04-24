@@ -26,12 +26,13 @@
                     android:layout_weight="1"
                     android:src="@drawable/ic_launcher_background"/>
 
-                <Button
-                    android:id="@+id/botonfav"
+                <ImageButton
+                    android:id="@+id/botonest"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="4"
-                    android:text="fav"
+                    android:src="@android:drawable/btn_star"
+                    android:background="#fff"
                     />
 
             </LinearLayout>

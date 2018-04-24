@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,10 +20,12 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
     Context mCtx;
     List<Planeta> planetaList;
 
+
     public PlanetAdapter(Context mCtx, List<Planeta> planetaList) {
         this.mCtx = mCtx;
         this.planetaList = planetaList;
         System.out.println("Se seteo planetadapter");
+
     }
 
     @Override
@@ -61,7 +64,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
     protected class PlanetViewHolder extends RecyclerView.ViewHolder{
         TextView titleTxtView, sndTxtView;
         ImageView img;
-        Button b;
+        ImageButton b;
 
         public PlanetViewHolder(View view){
             super(view);
@@ -69,10 +72,9 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
             titleTxtView = view.findViewById(R.id.texto);
             sndTxtView = view.findViewById(R.id.texto2);
             img=view.findViewById(R.id.imagen);
-            b= view.findViewById(R.id.botonfav);
+            b= view.findViewById(R.id.botonest);
+            
 
         }
-
-
     }
 }

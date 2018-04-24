@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void cambiarVista1(View view){
         List<Planeta> planetaList;
-        //planetaList = lista.getListAUX();
         //Aqui hay que llenar de nuevo la lista y agarrar los favoritos
         lista.reconstruirLista();
         planetaList = lista.getPlanetaList();
@@ -56,11 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void cambiarVista2(View view){
         List<Planeta> listatemp;
-        //System.out.println("despues de hacer la vista 2:"+ lista.getListAUX().get(0).getIdPlaneta());
-        //System.out.println("paso");
-        //lista.setListAUX(adapter.getPlanetaList());
-        //System.out.println("lo que agarro antes de: "+adapter.getPlanetaList().get(0).getInformacion());
-        //System.out.println("jusdo despues de setear: "+lista.getListAUX().get(0).getInformacion());
 
         //Aqui tengo que agarrar los favoritos de la otra lista
         lista.capturarFavsAux();
@@ -79,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
     public ArrayList<Planeta> fillList2(){
         ArrayList<Planeta> listatemp = (ArrayList<Planeta>) adapter.getPlanetaList();
-        //System.out.println("el favorito es: "+ lista.getPlanetaList().get(0).getFavorito());
         int i=0;
         System.out.println("size es: "+listatemp.size());
 
