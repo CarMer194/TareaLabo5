@@ -42,6 +42,8 @@ public class Listas {
     }
 
     public void setListAUX(List<Planeta> listAUX) {
+        System.out.println("se seteo");
         this.listAUX = listAUX;
+        System.out.println("info de aux: "+this.listAUX.get(0).getIdPlaneta());
     }
 }

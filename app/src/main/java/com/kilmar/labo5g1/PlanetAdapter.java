@@ -22,6 +22,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
     public PlanetAdapter(Context mCtx, List<Planeta> planetaList) {
         this.mCtx = mCtx;
         this.planetaList = planetaList;
+        System.out.println("Se seteo planetadapter");
     }
 
     @Override

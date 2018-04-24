@@ -6,24 +6,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    List<Planeta> planetaList;
-    List<Planeta> listAUX;
-    RecyclerView recyclerView;
-    PlanetAdapter adapter;
+    public RecyclerView recyclerView;
+    public PlanetAdapter adapter;
+    public Listas lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        planetaList = fillList();
-        listAUX = fillList();
-
+        List<Planeta> planetaList;
+        lista = new Listas();
+        System.out.println("se crea");
+        planetaList = lista.getPlanetaList();
 
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -37,21 +36,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public ArrayList<Planeta> fillList(){
-        ArrayList<Planeta> l = new ArrayList<>();
-        String desc= " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae enim tristique, auctor nunc a, porta lorem. Aliquam egestas ullamcorper imperdiet. Praesent quis elit tristique, mollis est id, venenatis lectus. Cras eu maximus dolor, non tempor leo. Etiam cursus sapien sit amet eros cursus porttitor. Fusce diam nibh, tincidunt a lectus non, elementum viverra nisl. Nulla venenatis neque nec risus convallis maximus. Mauris vel enim eu mauris blandit maximus.\n" +
-                "\n" +
-                "Vivamus sed ex interdum, condimentum ligula sed, hendrerit tellus. Integer eu vehicula diam. Donec tempus nibh lectus, nec interdum risus suscipit in. Vestibulum dignissim imperdiet lorem, a maximus arcu maximus a. Quisque vel elementum ipsum. Phasellus rutrum ut elit pulvinar aliquam. Praesent sagittis elit a tortor bibendum, sodales pellentesque tortor sollicitudin. Nam posuere volutpat dolor vitae vehicula. Nulla commodo augue mi, vitae accumsan enim ullamcorper a. Integer vitae bibendum libero, ac fermentum eros. Vivamus consectetur orci nisi, rhoncus aliquet odio viverra sed. Maecenas efficitur rutrum aliquet. Vivamus sed risus blandit, pharetra justo placerat, cursus orci. Vivamus sit amet vestibulum diam. Vivamus vel fermentum neque. ";
-        l.add(new Planeta(1,"una pelicula",desc));
-        l.add(new Planeta(2,"otra pelicula",desc));
-        l.add(new Planeta(3,"otra otra pelicula",desc));
-
-        return l;
-
-    }
-
     public void cambiarVista1(View view){
-        planetaList = listAUX;
+        List<Planeta> planetaList;
+        try {
+            if (lista.getListAUX() == null){
+                System.out.println("llega nulo");
+            }
+            System.out.println("lista "+lista.getListAUX().get(0).getIdPlaneta());
+        }
+        catch (IndexOutOfBoundsException e){
+                e.getCause();
+        }
+
+        planetaList = lista.getListAUX();
         System.out.println("vista 1");
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -60,11 +57,14 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-
     }
 
+
+
     public void cambiarVista2(View view){
-        //recyclerView.destroyDrawingCache();
+        List<Planeta> planetaList;
+        lista.setListAUX(adapter.getPlanetaList());
+        System.out.println("jusdo despues de setear: "+lista.getListAUX().get(0).getInformacion());
         planetaList = fillList2();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
@@ -77,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     public ArrayList<Planeta> fillList2(){
         ArrayList<Planeta> l = (ArrayList<Planeta>) adapter.getPlanetaList();
-        listAUX= adapter.getPlanetaList();
-        System.out.println("prueba: "+listAUX.get(1).getIdPlaneta());
+        System.out.println("la lista temporal recoje: "+l.get(0).getIdPlaneta());
         int i=0;
         System.out.println("size es: "+l.size());
 
